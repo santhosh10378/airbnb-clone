@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px 0px;
+
+  --primary: #e61e4d;
+  --secondary: #d70466;
+  --tertiary: #e31c5f;
+  --success: #008a05;
+  --danger: hsl(0, 98%, 41%);
+  --primary-gradient: linear-gradient(
+    to right,
+    #e61e4d 0%,
+    #e31c5f 50%,
+    #d70466 100%
+  );
+
+  --text-gray: #6a6a6a;
+  --bg-gray: #b0b0b0;
+  --border-gray: #dddddd;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: "Outfit", sans-serif;
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 500;
+  color: #222222;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 500;
+  color: #222222;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #222222;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bg-gray);
+}
+
+::-webkit-scrollbar-corner {
+  background: #f1f1f1;
+}
+
+.rdrMonth {
+  width: 100% !important;
+}
+
+.rdrCalendarWrapper {
+  width: 100% !important;
+  font-size: 14px !important;
+}

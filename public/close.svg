@@ -1,0 +1,13 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  fill="none"
+  stroke="currentcolor"
+  strokeWidth="3"
+  aria-hidden="true"
+  display="block"
+  overflow="visible"
+  viewBox="0 0 32 32"
+  style={{ height: 16, width: 16 }}
+>
+  <path d="M6 6l20 20m0-20L6 26"></path>
+</svg>;
