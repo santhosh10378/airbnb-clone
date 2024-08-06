@@ -1,11 +1,16 @@
+import { useNavigate } from "react-router-dom";
 import ListingCardActionButtons from "./ListingCardActionButtons";
 import ListingCardDetails from "./ListingCardDetails";
 import ListingCardFavorite from "./ListingCardFavorite";
 import ListingCardImages from "./ListingCardImages";
 
 const ListingCard = ({ trip, booking, myListing }) => {
+  const navigate = useNavigate();
   return (
-    <article className="flex flex-col gap-4 relative overflow-hidden">
+    <article
+      onClick={() => navigate("/listings/1")}
+      className="flex flex-col gap-4 relative overflow-hidden cursor-pointer"
+    >
       <div className="absolute right-3 top-3">
         <ListingCardFavorite />
       </div>

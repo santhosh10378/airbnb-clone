@@ -3,7 +3,7 @@ import CloseIcon from "../../icons/CloseIcon";
 import { useModal } from "../../../context/ModalContext";
 import CustomButton from "../../elements/CustomButton";
 
-const Modal = ({ title = "Modal", children }) => {
+const Modal = ({ title, children }) => {
   const { closeModal } = useModal();
 
   return (
@@ -24,7 +24,7 @@ const Modal = ({ title = "Modal", children }) => {
             <CloseIcon className="size-5" />
           </CustomButton>
           <div className="p-5">
-            <h3 className="text-center">{title}</h3>
+            {title && <h3 className="text-center">{title}</h3>}
           </div>
           <hr />
           <div className="p-5">{children}</div>
