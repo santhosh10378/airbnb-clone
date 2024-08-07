@@ -1,4 +1,6 @@
 import { useModal } from "../../../context/ModalContext";
+import AmenitiesModal from "../modal-objects/AmenitiesModal";
+import DescriptionModal from "../modal-objects/DescriptionModal";
 import DesktopSearchModal from "../modal-objects/DesktopSearchModal";
 import FiltersModal from "../modal-objects/FiltersModal";
 import LoginModal from "../modal-objects/LoginModal";
@@ -15,6 +17,8 @@ const modalLookUp = {
   FiltersModal: FiltersModal,
   RegisterModal: RegisterModal,
   LoginModal: LoginModal,
+  AmenitiesModal: AmenitiesModal,
+  DescriptionModal: DescriptionModal,
 };
 
 const ModalManager = () => {

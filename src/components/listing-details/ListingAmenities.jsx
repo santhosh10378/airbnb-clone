@@ -1,7 +1,11 @@
 import { amenities } from "../../constants/dummy";
+import { useModal } from "../../context/ModalContext";
 import CustomButton from "../elements/CustomButton";
+import AmenitiesModal from "../modals/modal-objects/AmenitiesModal";
 
 const ListingAmenities = () => {
+  const { openModal, setModalContent } = useModal();
+
   return (
     <div className="flex flex-col gap-4">
       <h2>What this place offers</h2>
@@ -18,7 +22,14 @@ const ListingAmenities = () => {
         ))}
       </div>
 
-      <CustomButton variant="primary-outlined" className="w-max px-8">
+      <CustomButton
+        onClick={() => {
+          openModal("AmenitiesModal");
+          setModalContent("Amenities Modals Amenities");
+        }}
+        variant="primary-outlined"
+        className="w-max px-8"
+      >
         Show all amenities
       </CustomButton>
     </div>

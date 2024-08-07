@@ -2,7 +2,7 @@ import { useModal } from "../../context/ModalContext";
 import CustomButton from "../elements/CustomButton";
 
 const ListingDescription = () => {
-  const { openModal } = useModal();
+  const { openModal, setModalContent } = useModal();
 
   return (
     <div className="flex flex-col gap-2">
@@ -23,7 +23,10 @@ const ListingDescription = () => {
       </div>
 
       <CustomButton
-        onClick={() => openModal("DescriptionModal")}
+        onClick={() => {
+          openModal("DescriptionModal");
+          setModalContent("ListingDescription");
+        }}
         variant="secondary-link"
       >
         Show more
