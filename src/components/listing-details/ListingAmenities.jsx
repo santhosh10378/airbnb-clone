@@ -1,7 +1,6 @@
 import { amenities } from "../../constants/dummy";
 import { useModal } from "../../context/ModalContext";
 import CustomButton from "../elements/CustomButton";
-import AmenitiesModal from "../modals/modal-objects/AmenitiesModal";
 
 const ListingAmenities = () => {
   const { openModal, setModalContent } = useModal();
