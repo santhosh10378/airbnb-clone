@@ -9,7 +9,7 @@ const Modal = ({ title, children }) => {
   return (
     <dialog className="fixed inset-0 z-30 w-full h-screen flex items-center justify-center bg-black/70">
       <motion.div
-        className="bg-white w-full h-full md:w-auto md:h-auto md:min-w-[550px] md:max-w-[780px] md:max-h-[85vh] md:rounded-lg"
+        className="bg-white w-full h-full md:w-auto md:h-auto md:min-w-[550px] md:max-w-[780px] md:max-h-[85vh] md:rounded-xl overflow-y-auto"
         initial={{ opacity: 1, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 100 }}
@@ -26,8 +26,8 @@ const Modal = ({ title, children }) => {
           <div className="p-5">
             {title && <h3 className="text-center">{title}</h3>}
           </div>
-          <hr />
-          <div className="p-5">{children}</div>
+          {title && <hr />}
+          <div className="p-5 ">{children}</div>
         </div>
       </motion.div>
     </dialog>
