@@ -4,7 +4,8 @@ import HeartIcon from "../icons/HeartIcon";
 const ListingCardFavorite = () => {
   const [isFavorited, setIsFavorited] = useState(false);
 
-  const handleFavorite = () => {
+  const handleFavorite = (e) => {
+    e.stopPropagation();
     setIsFavorited((prev) => !prev);
   };
 
