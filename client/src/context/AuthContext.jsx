@@ -5,6 +5,7 @@ import { axiosInstance } from "../config/axiosInstance";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const [token, setToken] = useState(localStorage.getItem("authToken"));
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -98,6 +99,7 @@ export const AuthProvider = ({ children }) => {
         loginUser,
         logoutUser,
         fetchUser,
+        token,
       }}
     >
       {children}
@@ -119,6 +121,7 @@ export const useAuth = () => {
     loginUser,
     logoutUser,
     fetchUser,
+    token,
   } = context;
 
   return {
@@ -129,5 +132,6 @@ export const useAuth = () => {
     loginUser,
     logoutUser,
     fetchUser,
+    token,
   };
 };
