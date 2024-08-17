@@ -77,10 +77,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    loginUser({
-      email: "santhosh@gmail1.com",
-      password: "Santhosh@1234",
-    });
+    fetchUser()
   }, []);
 
   return (
