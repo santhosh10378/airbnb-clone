@@ -21,9 +21,11 @@ export const signUp = async (req, res, next) => {
     const authToken = generateAuthToken(userWithoutPassword.id);
 
     setAuthTokenCookie(res, authToken);
-    res
-      .status(201)
-      .json({ message: "Sign-up successful", user: userWithoutPassword });
+    res.status(201).json({
+      message: "Sign-up successful",
+      user: userWithoutPassword,
+      authToken,
+    });
   } catch (error) {
     next(createError(500, `Failed to sign up - ${error?.message}`));
   }
@@ -43,7 +45,11 @@ export const signIn = async (req, res, next) => {
     setAuthTokenCookie(res, authToken);
     res
       .status(200)
-      .json({ message: "Sign-in successful", user: userWithoutPassword });
+      .json({
+        message: "Sign-in successful",
+        user: userWithoutPassword,
+        authToken,
+      });
   } catch (error) {
     next(createError(500, `Failed to sign in - ${error?.message}`));
   }
