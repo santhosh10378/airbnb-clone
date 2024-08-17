@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import toast from "react-hot-toast";
-import { axiosInstance } from "../config/axiosInstance";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
@@ -15,10 +15,11 @@ export const AuthProvider = ({ children }) => {
     setError(null);
     try {
       const authToken = localStorage.getItem("authToken");
-      const response = await axiosInstance.get("/users/profile", {
+      const response = await axios.get("/users/profile", {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
+        withCredentials: true,
       });
       setUser(response.data);
       console.log(response.data);
@@ -35,7 +36,9 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axiosInstance.post("/auth/sign-up", credentials);
+      const response = await axios.post("/auth/sign-up", credentials, {
+        withCredentials: true,
+      });
       setUser(response.data);
       toast.success("Registered successfully");
       localStorage.setItem("authToken", response.data.authToken);
@@ -53,7 +56,9 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axiosInstance.post("/auth/sign-in", credentials);
+      const response = await axios.post("/auth/sign-in", credentials, {
+        withCredentials: true,
+      });
       setUser(response.data);
       toast.success("Logged in successfully");
       localStorage.setItem("authToken", response.data.authToken);
@@ -71,7 +76,9 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      await axiosInstance.post("/auth/sign-out");
+      await axios.post("/auth/sign-out", {
+        withCredentials: true,
+      });
       setUser(null);
       toast.success("Logged out successfully");
       localStorage.removeItem("authToken");
