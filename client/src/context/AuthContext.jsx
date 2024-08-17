@@ -13,7 +13,12 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axiosInstance.get("/users/profile");
+      const authToken = localStorage.getItem("authToken");
+      const response = await axiosInstance.get("/users/profile", {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
       setUser(response.data);
       console.log(response.data);
     } catch (err) {
@@ -32,6 +37,7 @@ export const AuthProvider = ({ children }) => {
       const response = await axiosInstance.post("/auth/sign-up", credentials);
       setUser(response.data);
       toast.success("Registered successfully");
+      localStorage.setItem("authToken", response.data.authToken);
       fetchUser();
     } catch (err) {
       console.error("Error registering", err);
@@ -49,6 +55,7 @@ export const AuthProvider = ({ children }) => {
       const response = await axiosInstance.post("/auth/sign-in", credentials);
       setUser(response.data);
       toast.success("Logged in successfully");
+      localStorage.setItem("authToken", response.data.authToken);
       fetchUser();
     } catch (err) {
       console.error("Error logging in", err);
@@ -66,6 +73,7 @@ export const AuthProvider = ({ children }) => {
       await axiosInstance.post("/auth/sign-out");
       setUser(null);
       toast.success("Logged out successfully");
+      localStorage.removeItem("authToken");
       fetchUser();
     } catch (err) {
       console.error("Error logging out", err);
@@ -77,7 +85,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchUser()
+    fetchUser();
   }, []);
 
   return (
