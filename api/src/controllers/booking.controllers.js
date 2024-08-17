@@ -18,11 +18,14 @@ export const createBookingController = async (req, res, next) => {
 };
 
 export const getBookingsController = async (req, res, next) => {
+  console.log("getBookingsController started");
+
   try {
     const whereClause = buildBookingWhereClause(req.query);
     const bookings = await getBookings(whereClause);
     res.status(200).json(bookings);
   } catch (error) {
+    console.log("getBookingsController error");
     next(createError(500, `Failed to retrieve bookings - ${error?.message}`));
   }
 };

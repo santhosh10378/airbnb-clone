@@ -3,11 +3,13 @@ import { getUserById } from "../services/user.services.js";
 import { verifyToken } from "../utils/tokenUtils.js";
 
 export const verifyAuthToken = async (req, res, next) => {
+  console.log("verifyAuthToken started");
   try {
     // Check the Authorization header for the token
     const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      console.log("authHeader error");
       return next(createError(401, "Authentication token is required"));
     }
 
@@ -15,6 +17,7 @@ export const verifyAuthToken = async (req, res, next) => {
     const token = authHeader.split(" ")[1] || req.cookies.authToken;
 
     if (!token) {
+      console.log("token error");
       return next(createError(401, "Authentication token is required"));
     }
 
@@ -33,6 +36,7 @@ export const verifyAuthToken = async (req, res, next) => {
 
     next();
   } catch (error) {
+    console.log("verifyAuthToken failed error");
     next(createError(401, `Invalid or expired token - ${error.message}`));
   }
 };
