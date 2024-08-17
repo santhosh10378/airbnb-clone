@@ -12,7 +12,7 @@ export const verifyAuthToken = async (req, res, next) => {
     }
 
     // Extract the token from the Authorization header
-    const token = authHeader.split(" ")[1];
+    const token = authHeader.split(" ")[1] || req.cookies.authToken;
 
     if (!token) {
       return next(createError(401, "Authentication token is required"));
