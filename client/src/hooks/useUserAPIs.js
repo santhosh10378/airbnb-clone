@@ -1,7 +1,8 @@
 import { useCallback } from "react";
-import { requestData } from "../utils/apiCalls";
+import useRequestData from "./useRequestData";
 
 const useUserAPIs = () => {
+  const requestData = useRequestData();
   const updateUser = useCallback(
     async ({
       userId,

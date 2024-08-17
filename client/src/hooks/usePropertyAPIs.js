@@ -1,7 +1,8 @@
 import { useCallback } from "react";
-import { requestData } from "../utils/apiCalls";
+import useRequestData from "./useRequestData";
 
 const usePropertyAPIs = () => {
+  const requestData = useRequestData();
   const createProperty = useCallback(
     async ({
       data,

@@ -1,11 +1,12 @@
 import { useState, useCallback, useEffect } from "react";
 import toast from "react-hot-toast";
-import { axiosInstance } from "../config/axiosInstance";
+import { useAxiosInstance } from "./useAxiosInstance";
 
 const useFetch = (fetchURL, options = {}) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const axiosInstance = useAxiosInstance();
 
   const fetchData = useCallback(async () => {
     setLoading(true);

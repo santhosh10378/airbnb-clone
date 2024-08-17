@@ -22,7 +22,6 @@ export const AuthProvider = ({ children }) => {
         withCredentials: true,
       });
       setUser(response.data);
-      console.log(response.data);
     } catch (err) {
       console.error("Error fetching user data", err);
       setError("Failed to fetch user data");
@@ -39,9 +38,9 @@ export const AuthProvider = ({ children }) => {
       const response = await axios.post("/auth/sign-up", credentials, {
         withCredentials: true,
       });
-      setUser(response.data);
-      toast.success("Registered successfully");
       localStorage.setItem("authToken", response.data.authToken);
+      setToken(response.data.authToken);
+      toast.success("Registered successfully");
       fetchUser();
     } catch (err) {
       console.error("Error registering", err);
@@ -59,9 +58,9 @@ export const AuthProvider = ({ children }) => {
       const response = await axios.post("/auth/sign-in", credentials, {
         withCredentials: true,
       });
-      setUser(response.data);
-      toast.success("Logged in successfully");
       localStorage.setItem("authToken", response.data.authToken);
+      setToken(response.data.authToken);
+      toast.success("Logged in successfully");
       fetchUser();
     } catch (err) {
       console.error("Error logging in", err);
@@ -76,13 +75,11 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      await axios.post("/auth/sign-out", {
-        withCredentials: true,
-      });
+      await axios.post("/auth/sign-out", {}, { withCredentials: true });
+      localStorage.removeItem("authToken");
+      setToken(null);
       setUser(null);
       toast.success("Logged out successfully");
-      localStorage.removeItem("authToken");
-      fetchUser();
     } catch (err) {
       console.error("Error logging out", err);
       setError("Logout failed");
@@ -94,7 +91,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [token]);
 
   return (
     <AuthContext.Provider

@@ -1,7 +1,9 @@
 import { useCallback } from "react";
-import { requestData } from "../utils/apiCalls";
+import useRequestData from "./useRequestData";
 
 const useWishlistAPIs = () => {
+  const requestData = useRequestData();
+
   const createWishlist = useCallback(
     async ({
       data,
