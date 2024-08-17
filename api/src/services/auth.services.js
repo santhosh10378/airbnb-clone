@@ -61,6 +61,9 @@ export const setAuthTokenCookie = (res, authToken) => {
   try {
     res.cookie("authToken", authToken, {
       httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "none",
+      maxAge: 24 * 60 * 60 * 1000,
     });
   } catch (error) {
     throw createError(
@@ -74,6 +77,8 @@ export const clearAuthTokenCookie = (res) => {
   try {
     res.clearCookie("authToken", {
       httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "none",
     });
   } catch (error) {
     throw createError(
