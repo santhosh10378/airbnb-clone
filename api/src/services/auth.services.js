@@ -74,8 +74,6 @@ export const clearAuthTokenCookie = (res) => {
   try {
     res.clearCookie("authToken", {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
     });
   } catch (error) {
     throw createError(
