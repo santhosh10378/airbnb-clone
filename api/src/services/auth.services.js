@@ -61,8 +61,6 @@ export const setAuthTokenCookie = (res, authToken) => {
   try {
     res.cookie("authToken", authToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "none",
     });
   } catch (error) {
     throw createError(
